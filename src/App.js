@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import {Accordion} from "react-bootstrap";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {defaultData} from "./Data/Default";
+
+const App = () => {
+
+    return (
+        <div className="container">
+            <hr/>
+            <h1>Tasks Manager</h1>
+            <hr/>
+            <Accordion defaultActiveKey={['0', '1', '2']} alwaysOpen>
+                {
+                    defaultData.tasks.map((task, index) => {
+                            return (
+                                <Accordion.Item eventKey={index.toString()} key={'task-' + index}>
+                                    <Accordion.Header><h5>{task.title}</h5></Accordion.Header>
+                                    <Accordion.Body>
+                                        <p>{new Date(task.id).toISOString().slice(0, 19).replace('T', ', ')}</p>
+                                        <p>{task.body}</p>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            )
+                        }
+                    )
+                }
+            </Accordion>
+
+            <hr/>
+        </div>
+    );
 }
 
 export default App;
