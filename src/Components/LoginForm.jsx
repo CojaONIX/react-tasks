@@ -1,8 +1,8 @@
 import {useForm} from "react-hook-form";
-import {EmailValidator} from "../Validators/EmailValidator";
-import {PasswordValidator} from "../Validators/PasswordValidator";
-import {useState} from "react";
+
 import {defaultUsers} from "../Data/Default";
+import {appDataState} from "../States/appDataState";
+import {useSetRecoilState} from "recoil";
 
 
 const LoginForm = () => {
@@ -13,13 +13,11 @@ const LoginForm = () => {
         formState: {errors},
     } = useForm();
 
-    const [loginMessage, setLoginMessage] = useState(null);
+    const setAppDataState = useSetRecoilState(appDataState);
 
     const formSubmitted = (data) => {
-
-        if (1 === 2) {
-            setLoginMessage('Wrong credentials!');
-        }
+        console.log(data);
+        setAppDataState(data);
     }
 
     return (
@@ -45,7 +43,16 @@ const LoginForm = () => {
                         <form onSubmit={handleSubmit(formSubmitted)}>
                             <div className="mb-3">
                                 <label htmlFor="email">Email <span className="text-danger">*</span></label>
-                                <input {...register("email", EmailValidator)}
+                                <input {...register("email", {
+                                            required: 'Email field is required',
+                                            validate: {
+                                                existsCheck: (value) => {
+                                                    if (defaultUsers.users.filter(e => e.email === value).length === 0) {
+                                                        return 'Email must be Test Default User.';
+                                                    }
+                                                }
+                                            }
+                                        })}
                                        type="text"
                                        id="email"
                                        className="form-control mt-2"
@@ -55,7 +62,12 @@ const LoginForm = () => {
 
                             <div className="mb-3">
                                 <label htmlFor="password">Password <span className="text-danger">*</span></label>
-                                <input {...register("password", PasswordValidator)}
+                                <input {...register("password", {
+                                            required: 'Password field is required',
+                                            validate: {
+                                                passwordCheck: value => (value === 'password') || 'Password must be "password"',
+                                            }
+                                        })}
                                        type="text"
                                        id="password"
                                        className="form-control mt-2"
@@ -69,9 +81,8 @@ const LoginForm = () => {
                 </div>
 
                 <div className="card-footer text-danger">
-                    <h6>{errors.username && <span>{errors.username.message}</span>}</h6>
+                    <h6>{errors.email && <span>{errors.email.message}</span>}</h6>
                     <h6>{errors.password && <span>{errors.password.message}</span>}</h6>
-                    <h6>{loginMessage}</h6>
                 </div>
             </div>
         </div>
