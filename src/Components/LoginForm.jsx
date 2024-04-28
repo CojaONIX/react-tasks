@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 
-import {defaultUsers} from "../Data/Default";
+import {defaultTasks, defaultUsers} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
 import {Accordion} from "react-bootstrap";
@@ -19,8 +19,13 @@ const LoginForm = () => {
 
     const formSubmitted = (data) => {
         const auth = defaultUsers.users.filter(e => e.email === data.email);
-        setAppDataState({auth: auth[0]});
-    }
+        setAppDataState({auth: auth[0], ...defaultTasks});
+    };
+
+    const handleLogout = () => {
+        const {auth, ...rest } = appData;
+        setAppDataState(rest);
+    };
 
     return (
         <Accordion defaultActiveKey="login">
@@ -31,7 +36,7 @@ const LoginForm = () => {
                 <Accordion.Body>
             {appData.auth
                 ?
-                <button className="btn btn-primary form-control my-2">Logout</button>
+                <button onClick={() => handleLogout()} className="btn btn-primary form-control my-2">Logout</button>
                 :
                 <div className="mx-auto">
                     <div className="card">

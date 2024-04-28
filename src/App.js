@@ -13,9 +13,7 @@ const App = () => {
                 <hr/>
                 <div className="d-flex justify-content-between flex-wrap">
                     <h1>Tasks Manager</h1>
-
-                                <LoginForm/>
-
+                    <LoginForm/>
                 </div>
 
                 <hr/>
