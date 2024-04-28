@@ -2,14 +2,14 @@
 
 const LoginForm = () => {
     return (
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div className="mx-auto">
             <div className="card">
                 <div className="card-header">
                     <h4>LOGIN</h4>
                 </div>
 
                 <div className="card-body">
-                    {0 === 2
+                    {2 === 2
                         ?
                         <form>
                             <div className="mb-3">
