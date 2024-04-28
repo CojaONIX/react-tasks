@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Accordion} from "react-bootstrap";
 
-import {defaultData} from "./Data/Default";
+import {defaultTasks} from "./Data/Default";
 import LoginForm from "./Components/LoginForm";
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
             <hr/>
             <Accordion defaultActiveKey={['a0', 'a1', 'a2']} alwaysOpen>
                 {
-                    defaultData.tasks.map((task, index) => {
+                    defaultTasks.tasks.map((task, index) => {
                             return (
                                 <Accordion.Item eventKey={index.toString()} key={'task-' + index}
                                                 className="mb-3 border border-3">
