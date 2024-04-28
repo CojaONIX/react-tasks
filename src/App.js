@@ -13,14 +13,9 @@ const App = () => {
                 <hr/>
                 <div className="d-flex justify-content-between flex-wrap">
                     <h1>Tasks Manager</h1>
-                    <Accordion defaultActiveKey="login">
-                        <Accordion.Item eventKey="login" className="border border-primary border-2">
-                            <Accordion.Header><h4 className="me-4">Please Login to manage tasks</h4></Accordion.Header>
-                            <Accordion.Body>
+
                                 <LoginForm/>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
+
                 </div>
 
                 <hr/>

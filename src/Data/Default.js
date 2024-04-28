@@ -26,28 +26,28 @@ export const defaultUsers = {
             id: 1,
             email: 'admin@admin.com',
             password: 'password',
-            name: 'A',
+            name: 'Admin',
             role: 'admin'
         },
         {
             id: 2,
             email: 'test@test.com',
             password: 'password',
-            name: 'T',
+            name: 'Test',
             role: 'test'
         },
         {
             id: 3,
             email: 'user01@user.com',
             password: 'password',
-            name: 'M',
+            name: 'Aleksandar',
             role: 'user'
         },
         {
             id: 4,
             email: 'user02@user.com',
             password: 'password',
-            name: 'K',
+            name: 'Ivan',
             role: 'user'
         },
         {
@@ -68,7 +68,7 @@ export const defaultUsers = {
             id: 7,
             email: 'user05@user.com',
             password: 'password',
-            name: 'I',
+            name: 'Goran',
             role: 'user'
         }
     ]
