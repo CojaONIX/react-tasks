@@ -3,7 +3,8 @@ import {useForm} from "react-hook-form";
 import {defaultUsers} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
-import {Accordion} from "react-bootstrap";
+import {Accordion, Card, Form} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 
 const LoginForm = () => {
@@ -36,68 +37,62 @@ const LoginForm = () => {
                     <h4 className="me-4">{appData.auth ? 'Hello, ' + appData.auth.name : 'Please Login to manage tasks'}</h4>
                 </Accordion.Header>
                 <Accordion.Body>
-            {appData.auth
-                ?
-                <button onClick={() => handleLogout()} className="btn btn-primary form-control my-2">Logout</button>
-                :
-                <div className="mx-auto">
-                    <div className="card">
-                        <div className="card-header">
-                            <h5 className="p-0 m-0">Test Default Users:</h5>
+                {appData.auth
+                    ?
+                    <Button onClick={() => handleLogout()} variant="primary col-12">Logout</Button>
+                    :
+                    <Card>
+                        <Card.Header>
+                            <Card.Title>Test Default Users:</Card.Title>
                             <hr/>
                             {
                                 defaultUsers.map((user) => {
                                     return (
-                                        <p className="p-0 m-0">{user.email}</p>
+                                        <Card.Text key={'user-' + user.id} className="p-0 m-0">{user.email}</Card.Text>
                                     )
                                 })
                             }
                             <hr/>
-                            <h5 className="p-0 m-0">pass: password</h5>
-                        </div>
+                            <Card.Title>pass: password</Card.Title>
+                        </Card.Header>
 
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit(formSubmitted)}>
-                                <div className="mb-3">
-                                    <label htmlFor="email">Email <span className="text-danger">*</span></label>
-                                    <input {...register("email", {
-                                        required: 'Email field is required',
-                                        validate: {
-                                            existsCheck: (value) => defaultUsers.filter(e => e.email === value).length !== 0 || 'Email must be Test Default User.'
-                                        }
-                                    })}
-                                           type="text"
-                                           id="email"
-                                           className="form-control mt-2"
-                                           autoFocus
+                        <Card.Body>
+                            <Form onSubmit={handleSubmit(formSubmitted)}>
+                                <Form.Group className="mb-3" controlId="email">
+                                    <Form.Label>Email <span className="text-danger">*</span></Form.Label>
+                                    <Form.Control type="text"
+                                        {...register("email", {
+                                            required: 'Email field is required',
+                                            validate: {
+                                                existsCheck: (value) => defaultUsers.filter(e => e.email === value).length !== 0 || 'Email must be Test Default User.'
+                                            }
+                                        })}
                                     />
-                                </div>
+                                </Form.Group>
 
-                                <div className="mb-3">
-                                    <label htmlFor="password">Password <span className="text-danger">*</span></label>
-                                    <input {...register("password", {
-                                        required: 'Password field is required',
-                                        validate: {
-                                            passwordCheck: value => value === 'password' || 'Password must be "password"',
-                                        }
-                                    })}
-                                           type="text"
-                                           id="password"
-                                           className="form-control mt-2"
+                                <Form.Group className="mb-3" controlId="password">
+                                    <Form.Label>Password <span className="text-danger">*</span></Form.Label>
+                                    <Form.Control type="text"
+                                        {...register("password", {
+                                            required: 'Password field is required',
+                                            validate: {
+                                                passwordCheck: value => value === 'password' || 'Password must be "password"',
+                                            }
+                                        })}
                                     />
-                                </div>
+                                </Form.Group>
 
-                                <button className="btn btn-primary form-control my-2">Login</button>
-                            </form>
-                        </div>
 
-                        <div className="card-footer text-danger">
+                                <Button variant="primary" type="submit">Login</Button>
+                            </Form>
+                        </Card.Body>
+
+                        <Card.Footer className="text-danger">
                             <h6>{errors.email && <span>{errors.email.message}</span>}</h6>
                             <h6>{errors.password && <span>{errors.password.message}</span>}</h6>
-                        </div>
-                    </div>
-                </div>
-            }
+                        </Card.Footer>
+                    </Card>
+                }
 
                 </Accordion.Body>
             </Accordion.Item>
