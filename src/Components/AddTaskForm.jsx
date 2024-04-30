@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
 import {useForm} from "react-hook-form";
-import {Form} from "react-bootstrap";
+import {Button, Collapse, Form} from "react-bootstrap";
 
 const AddTaskForm = () => {
     const [open, setOpen] = useState(false);
@@ -40,9 +38,7 @@ const AddTaskForm = () => {
                                    type="text"
                                    autoFocus
                                 />
-
                             </Form.Group>
-
 
                             <Form.Group className="mb-3" controlId="body">
                                 <Form.Label>Body <span className="text-danger">* {errors.body && <span>{errors.body.message}</span>}</span></Form.Label>
@@ -53,7 +49,6 @@ const AddTaskForm = () => {
                                         required: 'Body field is required'
                                     })}
                                 />
-
                             </Form.Group>
 
                             <Button variant="primary" type="submit">Save</Button>

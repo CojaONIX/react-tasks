@@ -3,9 +3,7 @@ import {useForm} from "react-hook-form";
 import {defaultUsers} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
-import {Accordion, Card, Form} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-
+import {Accordion, Button, Card, Form} from "react-bootstrap";
 
 const LoginForm = () => {
 
