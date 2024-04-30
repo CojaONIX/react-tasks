@@ -1,7 +1,7 @@
 
 
-export const defaultTasks = {
-    tasks: [
+export const defaultTasks =
+    [
         {
             id: 1714303546000,
             title: 'Task Item #1',
@@ -17,60 +17,67 @@ export const defaultTasks = {
             title: 'Task Item #3',
             body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, consectetur dolores officiis architecto ipsam omnis voluptate ducimus atque cupiditate tenetur magnam ratione dolorum est temporibus? Incidunt esse asperiores magnam, optio assumenda quis natus vel molestiae eligendi praesentium enim. Dolore quam ab consequatur blanditiis, expedita vel.'
         }
-    ]
-}
+    ];
 
-export const defaultUsers = {
-    users: [
+export const defaultCategories = ['Frontend', 'Backend', 'Design'];
+
+export const defaultUsers =
+    [
         {
             id: 1,
             email: 'admin@admin.com',
             password: 'password',
             name: 'Admin',
-            role: 'admin'
+            role: 'admin',
+            isLogged: false
         },
         {
             id: 2,
             email: 'test@test.com',
             password: 'password',
             name: 'Test',
-            role: 'test'
+            role: 'test',
+            isLogged: false
         },
         {
             id: 3,
             email: 'user01@user.com',
             password: 'password',
             name: 'Aleksandar',
-            role: 'user'
+            role: 'user',
+            isLogged: false
         },
         {
             id: 4,
             email: 'user02@user.com',
             password: 'password',
             name: 'Ivan',
-            role: 'user'
+            role: 'user',
+            isLogged: false
         },
         {
             id: 5,
             email: 'user03@user.com',
             password: 'password',
             name: 'G',
-            role: 'user'
+            role: 'user',
+            isLogged: false
         },
         {
             id: 6,
             email: 'user04@user.com',
             password: 'password',
             name: 'B',
-            role: 'user'
+            role: 'user',
+            isLogged: false
         },
         {
             id: 7,
             email: 'user05@user.com',
             password: 'password',
             name: 'Goran',
-            role: 'user'
+            role: 'user',
+            isLogged: false
         }
-    ]
-}
+    ];
 

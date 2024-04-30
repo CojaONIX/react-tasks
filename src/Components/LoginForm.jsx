@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 
-import {defaultTasks, defaultUsers} from "../Data/Default";
+import {defaultUsers} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
 import {Accordion} from "react-bootstrap";
@@ -18,8 +18,10 @@ const LoginForm = () => {
     const appData = useRecoilValue(appDataState);
 
     const formSubmitted = (data) => {
-        const auth = defaultUsers.users.filter(e => e.email === data.email);
-        setAppDataState({auth: auth[0], ...defaultTasks});
+        const auth = defaultUsers.filter(e => e.email === data.email);
+        const {password, ...rest} = auth[0];
+        rest.isLogged = true;
+        setAppDataState({auth: rest});
     };
 
     const handleLogout = () => {
@@ -28,7 +30,7 @@ const LoginForm = () => {
     };
 
     return (
-        <Accordion defaultActiveKey="login">
+        <Accordion>
             <Accordion.Item eventKey="login" className="border border-primary border-2">
                 <Accordion.Header>
                     <h4 className="me-4">{appData.auth ? 'Hello, ' + appData.auth.name : 'Please Login to manage tasks'}</h4>
@@ -44,7 +46,7 @@ const LoginForm = () => {
                             <h5 className="p-0 m-0">Test Default Users:</h5>
                             <hr/>
                             {
-                                defaultUsers.users.map((user) => {
+                                defaultUsers.map((user) => {
                                     return (
                                         <p className="p-0 m-0">{user.email}</p>
                                     )
@@ -61,7 +63,7 @@ const LoginForm = () => {
                                     <input {...register("email", {
                                         required: 'Email field is required',
                                         validate: {
-                                            existsCheck: (value) => defaultUsers.users.filter(e => e.email === value).length !== 0 || 'Email must be Test Default User.'
+                                            existsCheck: (value) => defaultUsers.filter(e => e.email === value).length !== 0 || 'Email must be Test Default User.'
                                         }
                                     })}
                                            type="text"
