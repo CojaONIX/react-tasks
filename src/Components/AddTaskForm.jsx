@@ -73,8 +73,7 @@ const AddTaskForm = () => {
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="body">
-                                    <Form.Label>Body <span
-                                        className="text-danger">* {errors.body && errors.body.message}</span></Form.Label>
+                                    <Form.Label>Body <span className="text-danger">* {errors.body && errors.body.message}</span></Form.Label>
                                     <Form.Control
                                         as="textarea"
                                         style={{height: '210px'}}
