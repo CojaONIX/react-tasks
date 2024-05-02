@@ -22,6 +22,7 @@ const App = () => {
 
                 <TasksList/>
                 <hr/>
+                <button onClick={() => localStorage.removeItem('react-tasks-app-data')} className="btn btn-outline-danger">Clear Local Storage</button>
             </div>
         </RecoilRoot>
     );

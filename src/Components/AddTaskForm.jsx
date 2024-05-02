@@ -12,6 +12,7 @@ const AddTaskForm = () => {
         register,
         handleSubmit,
         formState: {errors},
+        reset
     } = useForm();
 
     const setAppDataState = useSetRecoilState(appDataState);
@@ -21,6 +22,7 @@ const AddTaskForm = () => {
         data.id = Date.now();
         data.finished = false;
         setAppDataState({...appData, tasks: [...appData.tasks, data]});
+        reset();
     };
 
     return (
