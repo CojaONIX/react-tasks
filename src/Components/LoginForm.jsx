@@ -20,7 +20,7 @@ const LoginForm = () => {
         const auth = defaultUsers.filter(e => e.email === data.email);
         const {password, ...rest} = auth[0];
         rest.isLogged = true;
-        setAppDataState({auth: rest});
+        setAppDataState({...appData, auth: rest});
     };
 
     const handleLogout = () => {
