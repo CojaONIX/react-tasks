@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {useForm} from "react-hook-form";
 import {Button, Collapse, Form} from "react-bootstrap";
+import {defaultCategories} from "../Data/Default";
 
 const AddTaskForm = () => {
     const [open, setOpen] = useState(false);
@@ -10,6 +11,8 @@ const AddTaskForm = () => {
         handleSubmit,
         formState: {errors},
     } = useForm();
+
+
 
     const formSubmitted = (data) => {
 
@@ -29,6 +32,15 @@ const AddTaskForm = () => {
                 <Collapse in={open}>
                     <div id="add-task-form-collapse">
                         <Form onSubmit={handleSubmit(formSubmitted)}>
+
+                            <Form.Group className="mb-3" controlId="category">
+                                <Form.Label>Category <span className="text-danger">* {errors.category && <span>{errors.category.message}</span>}</span></Form.Label>
+                                <Form.Select aria-label="Category select" {...register("category", { required: 'Category select is required'})}>
+                                    <option value="">Choose...</option>
+                                    {defaultCategories.map(category => (<option key={category} value={category}>{category}</option>))}
+                                </Form.Select>
+                            </Form.Group>
+
                             <Form.Group className="mb-3" controlId="title">
                                 <Form.Label>Title <span className="text-danger">* {errors.title && <span>{errors.title.message}</span>}</span></Form.Label>
                                 <Form.Control
