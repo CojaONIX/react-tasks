@@ -34,7 +34,7 @@ const AddTaskForm = () => {
                         <Form onSubmit={handleSubmit(formSubmitted)}>
 
                             <Form.Group className="mb-3" controlId="category">
-                                <Form.Label>Category <span className="text-danger">* {errors.category && <span>{errors.category.message}</span>}</span></Form.Label>
+                                <Form.Label>Category <span className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
                                 <Form.Select aria-label="Category select" {...register("category", { required: 'Category select is required'})}>
                                     <option value="">Choose...</option>
                                     {defaultCategories.map(category => (<option key={category} value={category}>{category}</option>))}
@@ -42,7 +42,7 @@ const AddTaskForm = () => {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="title">
-                                <Form.Label>Title <span className="text-danger">* {errors.title && <span>{errors.title.message}</span>}</span></Form.Label>
+                                <Form.Label>Title <span className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
                                 <Form.Control
                                     {...register("title", {
                                         required: 'Title field is required'
@@ -53,7 +53,7 @@ const AddTaskForm = () => {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="body">
-                                <Form.Label>Body <span className="text-danger">* {errors.body && <span>{errors.body.message}</span>}</span></Form.Label>
+                                <Form.Label>Body <span className="text-danger">* {errors.body && errors.body.message}</span></Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     style={{ height: '210px' }}
