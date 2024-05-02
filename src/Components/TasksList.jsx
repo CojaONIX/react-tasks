@@ -20,22 +20,26 @@ const TasksList = () => {
     }
 
     return (
+        <>
         <Accordion defaultActiveKey={['a0', 'a1', 'a2']} alwaysOpen>
             {
                 appData.tasks.map((task, index) => (
                     <Accordion.Item eventKey={index.toString()} key={'task-' + index}
                                     className="mb-3 border border-3">
-                        <Accordion.Header><h5 className={task.finished ? 'text-success' : 'text-danger'}>{task.title}</h5></Accordion.Header>
+                        <Accordion.Header><h5
+                            className={task.finished ? 'text-success' : 'text-danger'}>{task.title}</h5>
+                        </Accordion.Header>
                         <Accordion.Body>
-                            <p>{new Date(task.id + 2*60*60*1000).toISOString().slice(0, 19).replace('T', ', ')}</p>
+                            <p>{new Date(task.id + 2 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ', ')}</p>
                             <p>{task.body}</p>
                             <div className="d-flex justify-content-between">
-                                <Button onClick={() => deleteTask(task.id)} variant="outline-danger">Delete Task</Button>
+                                <Button onClick={() => deleteTask(task.id)} variant="outline-danger">Delete
+                                    Task</Button>
                                 <Form.Check
                                     checked={task.finished}
                                     onChange={() => setFinishedTask(task.id)}
                                     type="switch"
-                                    id={'switch'+task.id}
+                                    id={'switch' + task.id}
                                     label="Finished"
                                 />
                             </div>
@@ -44,6 +48,15 @@ const TasksList = () => {
                 ))
             }
         </Accordion>
+
+            <hr/>
+            {appData.auth && appData.auth.role === 'admin' &&
+            <button onClick={() => localStorage.removeItem('react-tasks-app-data')}
+                    className="btn btn-outline-danger">Clear
+                Local Storage
+            </button>
+            }
+        </>
     );
 }
 
