@@ -21,10 +21,16 @@ const AddTaskForm = () => {
     const formSubmitted = (data) => {
         data.id = Date.now();
         data.finished = false;
+        data.owner = appData.auth.name;
         setAppDataState({...appData, tasks: [...appData.tasks, data]});
         reset();
         setOpen(false);
     };
+
+    const keys = Object.keys(appData.tasks[0]).length;
+        if(keys !== 6)
+            localStorage.removeItem('react-tasks-app-data')
+
 
     return (
         appData.auth &&
