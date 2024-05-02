@@ -15,12 +15,12 @@ const App = () => {
                     <h1>Tasks Manager</h1>
                     <LoginForm/>
                 </div>
-
                 <hr/>
+
                 <AddTaskForm/>
                 <hr/>
-                <TasksList />
 
+                <TasksList/>
                 <hr/>
             </div>
         </RecoilRoot>

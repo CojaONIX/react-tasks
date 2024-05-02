@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {useForm} from "react-hook-form";
 import {Button, Collapse, Form} from "react-bootstrap";
 import {defaultCategories} from "../Data/Default";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {appDataState} from "../States/appDataState";
 
 const AddTaskForm = () => {
     const [open, setOpen] = useState(false);
@@ -12,10 +14,13 @@ const AddTaskForm = () => {
         formState: {errors},
     } = useForm();
 
-
+    const setAppDataState = useSetRecoilState(appDataState);
+    const appData = useRecoilValue(appDataState);
 
     const formSubmitted = (data) => {
-
+        data.id = Date.now();
+        data.finished = false;
+        setAppDataState({...appData, tasks: [...appData.tasks, data]});
     };
 
     return (
