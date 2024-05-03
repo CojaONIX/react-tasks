@@ -1,5 +1,7 @@
 
+export const appVersion = 1.1;
 
+export const defaultCategories = ['Frontend', 'Backend', 'Design'];
 export const defaultTasks =
     [
         {
@@ -7,7 +9,7 @@ export const defaultTasks =
             owner: 'App',
             category: 'Welcome',
             title: 'Welcome!',
-            body: 'Dobrodosli u WebApp TaskManager. ',
+            body: 'Dobrodosli u WebApp TaskManager v' + appVersion,
             finished: false
         },
         {
@@ -27,8 +29,6 @@ export const defaultTasks =
             finished: false
         }
     ];
-
-export const defaultCategories = ['Frontend', 'Backend', 'Design'];
 
 export const defaultUsers =
     [

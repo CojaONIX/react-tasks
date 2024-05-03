@@ -27,10 +27,6 @@ const AddTaskForm = () => {
         setOpen(false);
     };
 
-    const keys = Object.keys(appData.tasks[0]).length;
-        if(keys !== 6)
-            localStorage.removeItem('react-tasks-app-data')
-
 
     return (
         appData.auth &&

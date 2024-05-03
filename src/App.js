@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import LoginForm from "./Components/LoginForm";
-import {RecoilRoot} from "recoil";
 import AddTaskForm from "./Components/AddTaskForm";
 import TasksList from "./Components/TasksList";
+import {RecoilRoot} from "recoil";
 
 const App = () => {
 

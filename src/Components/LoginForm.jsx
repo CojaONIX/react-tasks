@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 
-import {defaultUsers} from "../Data/Default";
+import {appVersion, defaultTasks, defaultUsers} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
 import {Accordion, Button, Card, Form} from "react-bootstrap";
@@ -15,6 +15,15 @@ const LoginForm = () => {
 
     const setAppDataState = useSetRecoilState(appDataState);
     const appData = useRecoilValue(appDataState);
+
+    // Check new app version
+    if(!('app' in appData) || appData.app.version !== appVersion) {
+        setAppDataState({
+            app: {
+                version: appVersion
+            },
+            tasks: defaultTasks});
+    }
 
     const formSubmitted = (data) => {
         const auth = defaultUsers.filter(e => e.email === data.email);
