@@ -68,7 +68,7 @@ export const defaultUsers =
             id: 5,
             email: 'user03@user.com',
             password: 'password',
-            name: 'G',
+            name: 'Branko',
             role: 'user',
             isLogged: false
         },
@@ -76,7 +76,7 @@ export const defaultUsers =
             id: 6,
             email: 'user04@user.com',
             password: 'password',
-            name: 'B',
+            name: 'Marija',
             role: 'user',
             isLogged: false
         },

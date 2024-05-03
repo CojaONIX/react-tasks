@@ -3,6 +3,7 @@ import {appDataState} from "../States/appDataState";
 import {Accordion, Button, Form} from "react-bootstrap";
 import {useState} from "react";
 import EditTaskForm from "./EditTaskForm";
+import CommentsList from "./CommentsList";
 
 
 const TasksList = () => {
@@ -56,12 +57,18 @@ const TasksList = () => {
 
                                 <p>{task.body}</p>
                                 {appData.auth &&
-                                    <div className="d-flex justify-content-between">
-                                        <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete Task</Button>
-                                        {task.owner !== 'App' &&
-                                             <Button onClick={() => setEditTaskID(task.id)} variant="outline-primary btn-sm">Edit Task</Button>
-                                        }
-                                    </div>
+                                    <>
+                                        <div className="d-flex justify-content-between">
+                                            <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete
+                                                Task</Button>
+                                            {task.owner !== 'App' &&
+                                                <Button onClick={() => setEditTaskID(task.id)}
+                                                        variant="outline-primary btn-sm">Edit Task</Button>
+                                            }
+                                        </div>
+                                        <hr/>
+                                        <CommentsList/>
+                                    </>
                                 }
                             </Accordion.Body>
                         }
