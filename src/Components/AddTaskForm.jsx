@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useForm} from "react-hook-form";
-import {Button, Collapse, Form} from "react-bootstrap";
+import {Button, Col, Collapse, Form, Row} from "react-bootstrap";
 import {defaultCategories} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
@@ -44,29 +44,32 @@ const AddTaskForm = () => {
                     <Collapse in={open}>
                         <div id="add-task-form-collapse">
                             <Form onSubmit={handleSubmit(formSubmitted)}>
-
-                                <Form.Group className="mb-3" controlId="category">
-                                    <Form.Label>Category <span
-                                        className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
-                                    <Form.Select
-                                        aria-label="Category select" {...register("category", {required: 'Category select is required'})}>
-                                        <option value="">Choose...</option>
-                                        {defaultCategories.map(category => (
-                                            <option key={category} value={category}>{category}</option>))}
-                                    </Form.Select>
-                                </Form.Group>
-
-                                <Form.Group className="mb-3" controlId="title">
-                                    <Form.Label>Title <span
-                                        className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
-                                    <Form.Control
-                                        {...register("title", {
-                                            required: 'Title field is required'
-                                        })}
-                                        type="text"
-                                        autoFocus
-                                    />
-                                </Form.Group>
+                                <Row>
+                                    <Col xs={4}>
+                                        <Form.Group className="mb-3" controlId="category">
+                                            <Form.Label>Category <span className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
+                                            <Form.Select
+                                                aria-label="Category select" {...register("category", {required: 'Category select is required'})}>
+                                                <option value="">Choose...</option>
+                                                {defaultCategories.map(category => (
+                                                    <option key={category} value={category}>{category}</option>))}
+                                            </Form.Select>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="title">
+                                            <Form.Label>Title <span
+                                                className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
+                                            <Form.Control
+                                                {...register("title", {
+                                                    required: 'Title field is required'
+                                                })}
+                                                type="text"
+                                                autoFocus
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
 
                                 <Form.Group className="mb-3" controlId="body">
                                     <Form.Label>Body <span className="text-danger">* {errors.body && errors.body.message}</span></Form.Label>

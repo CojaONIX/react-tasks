@@ -1,5 +1,5 @@
 
-export const appVersion = 1.1;
+export const appVersion = 1.2;
 
 export const defaultCategories = ['Frontend', 'Backend', 'Design'];
 export const defaultTasks =
@@ -8,7 +8,7 @@ export const defaultTasks =
             id: 1714303546000,
             owner: 'App',
             category: 'Welcome',
-            title: 'Welcome!',
+            title: 'Task #1 - Welcome!',
             body: 'Dobrodosli u WebApp TaskManager v' + appVersion,
             finished: false
         },
@@ -16,7 +16,7 @@ export const defaultTasks =
             id: 1714303547000,
             owner: 'App',
             category: 'Welcome',
-            title: 'Login',
+            title: 'Task #2 - Login',
             body: 'Ulogujte se sa jednim od default korisnika da bi imali dodatne funkcije!',
             finished: false
         },
@@ -24,7 +24,7 @@ export const defaultTasks =
             id: 1714303548000,
             owner: 'App',
             category: 'Welcome',
-            title: 'Manage',
+            title: 'Task #3 - Manage',
             body: 'Bravo! Sada mozete potpuno da kontrolisete taskove.',
             finished: false
         }
