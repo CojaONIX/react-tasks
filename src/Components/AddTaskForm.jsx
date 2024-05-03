@@ -22,6 +22,7 @@ const AddTaskForm = () => {
         data.id = Date.now();
         data.finished = false;
         data.owner = appData.auth.name;
+        data.comments = [];
         setAppDataState({...appData, tasks: [...appData.tasks, data]});
         reset();
         setOpen(false);
