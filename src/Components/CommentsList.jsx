@@ -4,7 +4,7 @@ import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
 
 
-const CommentsList = ({comments}) => {
+const CommentsList = ({taskID, comments}) => {
 
     const setAppDataState = useSetRecoilState(appDataState);
     const appData = useRecoilValue(appDataState);
@@ -12,11 +12,22 @@ const CommentsList = ({comments}) => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: {errors}
     } = useForm();
 
     const formSubmitted = (data) => {
+        data.id = Date.now();
+        data.author = appData.auth.name;
 
+        const modifiedComments = [...appData.tasks[taskID].comments, data];
+        const modifiedTask = {...appData.tasks[taskID], comments: modifiedComments};
+        const modifiedTasks = appData.tasks.map((task, index) => {
+            return index === taskID ? modifiedTask : task;
+        })
+
+        setAppDataState({...appData, tasks: modifiedTasks});
+        reset();
     };
 
     return (
