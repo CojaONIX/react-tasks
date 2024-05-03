@@ -67,7 +67,7 @@ const TasksList = () => {
                                             }
                                         </div>
                                         <hr/>
-                                        <CommentsList/>
+                                        <CommentsList comments={task.comments}/>
                                     </>
                                 }
                             </Accordion.Body>

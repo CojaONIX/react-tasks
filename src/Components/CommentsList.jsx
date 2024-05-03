@@ -4,7 +4,7 @@ import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
 
 
-const CommentsList = () => {
+const CommentsList = ({comments}) => {
 
     const setAppDataState = useSetRecoilState(appDataState);
     const appData = useRecoilValue(appDataState);
@@ -21,26 +21,27 @@ const CommentsList = () => {
 
     return (
         <>
-        <ListGroup>
-            <ListGroup.Item>
-                <div className="d-flex justify-content-between align-items-start">
-                    <p className="small">@Goran</p>
-                    <p className="small">2024-05-04, 13:55:12</p>
-                    <CloseButton className="small" />
-                </div>
-                {Date.now()}
-            </ListGroup.Item>
-
-
-        </ListGroup>
+            <ListGroup>
+                {
+                    comments.map(comment =>
+                        <ListGroup.Item  key={comment.id}>
+                            <div className="d-flex justify-content-between align-items-start text-success">
+                                <p className="small">@{comment.author}</p>
+                                <p className="small">{new Date(comment.id + 2*60*60*1000).toISOString().slice(0, 19).replace('T', ', ')}</p>
+                                <CloseButton className="small" />
+                            </div>
+                            {comment.text}
+                        </ListGroup.Item>
+                    )
+                }
+            </ListGroup>
 
             <Form onSubmit={handleSubmit(formSubmitted)} className="mt-3 p-3">
-
-                <Form.Group className="mb-3" controlId="body">
-                    <Form.Label>@{appData.auth.name} Comment: <span className="text-danger">* {errors.body && errors.body.message}</span></Form.Label>
+                <Form.Group className="mb-3" controlId="text">
+                    <Form.Label>@{appData.auth.name} Comment: <span className="text-danger">* {errors.text && errors.text.message}</span></Form.Label>
                     <Form.Control
                         as="textarea"
-                        {...register("body", {
+                        {...register("text", {
                             required: 'Comment field is required'
                         })}
                     />
