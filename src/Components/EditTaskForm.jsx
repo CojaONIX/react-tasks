@@ -1,6 +1,6 @@
 
 import {useForm} from "react-hook-form";
-import {Button, Form} from "react-bootstrap";
+import {Button, Col, Form, Row} from "react-bootstrap";
 import {defaultCategories} from "../Data/Default";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {appDataState} from "../States/appDataState";
@@ -17,19 +17,19 @@ const EditTaskForm = ({task, setEditTaskID}) => {
     const appData = useRecoilValue(appDataState);
 
     const formSubmitted = (data) => {
-        data.id = parseInt(data.id);
-        data.finished = data.finished === 'true';
-        const newTasksState = appData.tasks.map(task => {
-            return task.id === data.id ? data : task;
+        console.log(data);
+        const newTasksState = appData.tasks.map(taskOld => {
+            return task.id === taskOld.id ? {...task, ...data} : taskOld;
         });
         setAppDataState({...appData, tasks: newTasksState});
         setEditTaskID('');
-
     };
 
     return (
         <Form onSubmit={handleSubmit(formSubmitted)}>
 
+            <Row>
+                <Col xs={4}>
             <Form.Group className="mb-3" controlId="category">
                 <Form.Label>Category <span
                     className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
@@ -42,7 +42,8 @@ const EditTaskForm = ({task, setEditTaskID}) => {
 
                 </Form.Select>
             </Form.Group>
-
+                </Col>
+            <Col>
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title <span
                     className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
@@ -55,6 +56,8 @@ const EditTaskForm = ({task, setEditTaskID}) => {
                     autoFocus
                 />
             </Form.Group>
+            </Col>
+            </Row>
 
             <Form.Group className="mb-3" controlId="body">
                 <Form.Label>Body <span
@@ -68,13 +71,11 @@ const EditTaskForm = ({task, setEditTaskID}) => {
                     })}
                 />
             </Form.Group>
-            <input type="hidden" {...register('id')} defaultValue={task.id}/>
-            <input type="hidden" {...register('owner')} defaultValue={task.owner}/>
-            <input type="hidden" {...register('finished')} defaultValue={task.finished}/>
+
 
             <div className="d-flex justify-content-between">
-                <Button onClick={() => setEditTaskID('')} variant="secondary" type="button">Cancel</Button>
-                <Button variant="primary" type="submit">Save</Button>
+                <Button onClick={() => setEditTaskID('')} variant="secondary btn-sm" type="button">Cancel</Button>
+                <Button variant="primary btn-sm" type="submit">Save</Button>
             </div>
         </Form>
 

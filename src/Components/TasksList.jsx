@@ -36,7 +36,7 @@ const TasksList = () => {
                 appData.tasks.map((task, index) => (
                     <Accordion.Item eventKey={index.toString()} key={'task-' + index} className="mb-3 border border-3">
                         <Accordion.Header>
-                            <h5 className={task.finished ? 'text-success' : 'text-danger'}>({task.owner}): {task.title}</h5>
+                            <h5 className={task.finished ? 'text-success' : 'text-danger'}>({task.owner} / {task.category}): {task.title}</h5>
                         </Accordion.Header>
                         {editTaskID === task.id
                             ?
@@ -45,25 +45,33 @@ const TasksList = () => {
                             </Accordion.Body>
                             :
                             <Accordion.Body>
-                                <p>{new Date(task.id + 2 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ', ')} - Category: {task.category}</p>
+                                <div className="d-flex justify-content-between mb-2">
+                                    <div>
+                                        <p className="small p-0 m-0">{new Date(task.id + 2 * 60 * 60 * 1000).toISOString().slice(0, 10)}</p>
+                                        <p className="small p-0 m-0">{new Date(task.id + 2 * 60 * 60 * 1000).toISOString().slice(11, 19)}</p>
+                                    </div>
+
+                                    <Form.Check
+                                        checked={task.finished}
+                                        onChange={() => setFinishedTask(task.id)}
+                                        type="switch"
+                                        id={'switch' + task.id}
+                                        label="Finished"
+                                    />
+                                </div>
+
                                 <p>{task.body}</p>
                                 {appData.auth &&
                                     <div className="d-flex justify-content-between">
-                                        <Button onClick={() => deleteTask(task.id)} variant="outline-danger">Delete Task</Button>
-                                        {
-                                            task.owner !== 'App' &&
-                                                <Button onClick={() => editTask(task.id)} variant="outline-primary">Edit Task</Button>
+                                        <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete
+                                            Task</Button>
+                                        {task.owner !== 'App' &&
+                                             <Button onClick={() => editTask(task.id)} variant="outline-primary btn-sm">Edit Task</Button>
                                         }
-
-                                        <Form.Check
-                                            checked={task.finished}
-                                            onChange={() => setFinishedTask(task.id)}
-                                            type="switch"
-                                            id={'switch' + task.id}
-                                            label="Finished"
-                                        />
                                     </div>
                                 }
+
+
                             </Accordion.Body>
                         }
                     </Accordion.Item>
