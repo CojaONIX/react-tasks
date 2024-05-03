@@ -23,12 +23,6 @@ const TasksList = () => {
         setAppDataState({...appData, tasks: appData.tasks.filter(task => task.id !== taskID)});
     }
 
-    const editTask = (taskID) => {
-
-        setEditTaskID(taskID);
-        //setAppDataState({...appData, tasks: appData.tasks.filter(task => task.id !== taskID)});
-    }
-
 
     return (
         <Accordion defaultActiveKey={['a0', 'a1', 'a2']} alwaysOpen>
@@ -63,15 +57,12 @@ const TasksList = () => {
                                 <p>{task.body}</p>
                                 {appData.auth &&
                                     <div className="d-flex justify-content-between">
-                                        <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete
-                                            Task</Button>
+                                        <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete Task</Button>
                                         {task.owner !== 'App' &&
-                                             <Button onClick={() => editTask(task.id)} variant="outline-primary btn-sm">Edit Task</Button>
+                                             <Button onClick={() => setEditTaskID(task.id)} variant="outline-primary btn-sm">Edit Task</Button>
                                         }
                                     </div>
                                 }
-
-
                             </Accordion.Body>
                         }
                     </Accordion.Item>

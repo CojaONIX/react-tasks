@@ -17,7 +17,6 @@ const EditTaskForm = ({task, setEditTaskID}) => {
     const appData = useRecoilValue(appDataState);
 
     const formSubmitted = (data) => {
-        console.log(data);
         const newTasksState = appData.tasks.map(taskOld => {
             return task.id === taskOld.id ? {...task, ...data} : taskOld;
         });
@@ -30,33 +29,34 @@ const EditTaskForm = ({task, setEditTaskID}) => {
 
             <Row>
                 <Col xs={4}>
-            <Form.Group className="mb-3" controlId="category">
-                <Form.Label>Category <span
-                    className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
-                <Form.Select
-                    defaultValue={task.category}
-                    aria-label="Category select" {...register("category", {required: 'Category select is required'})}>
-                    {
-                        defaultCategories.map(category => (<option key={category} value={category}>{category}</option>))
-                    }
+                    <Form.Group className="mb-3" controlId="category">
+                        <Form.Label>Category <span
+                            className="text-danger">* {errors.category && errors.category.message}</span></Form.Label>
+                        <Form.Select
+                            defaultValue={task.category}
+                            aria-label="Category select" {...register("category", {required: 'Category select is required'})}>
+                            {
+                                defaultCategories.map(category => (<option key={category} value={category}>{category}</option>))
+                            }
 
-                </Form.Select>
-            </Form.Group>
+                        </Form.Select>
+                    </Form.Group>
                 </Col>
-            <Col>
-            <Form.Group className="mb-3" controlId="title">
-                <Form.Label>Title <span
-                    className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
-                <Form.Control
-                    defaultValue={task.title}
-                    {...register("title", {
-                        required: 'Title field is required'
-                    })}
-                    type="text"
-                    autoFocus
-                />
-            </Form.Group>
-            </Col>
+
+                <Col>
+                    <Form.Group className="mb-3" controlId="title">
+                        <Form.Label>Title <span
+                            className="text-danger">* {errors.title && errors.title.message}</span></Form.Label>
+                        <Form.Control
+                            defaultValue={task.title}
+                            {...register("title", {
+                                required: 'Title field is required'
+                            })}
+                            type="text"
+                            autoFocus
+                        />
+                    </Form.Group>
+                </Col>
             </Row>
 
             <Form.Group className="mb-3" controlId="body">
