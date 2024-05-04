@@ -67,7 +67,7 @@ const TasksList = () => {
                                         </div>
                                         <hr/>
 
-                                        <CommentsList comments={task.comments}/>
+                                        <CommentsList taskIDX={index} comments={task.comments}/>
                                         <AddCommentForm taskIDX={index}/>
 
                                     </>

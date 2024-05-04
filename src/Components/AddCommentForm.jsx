@@ -24,7 +24,7 @@ const AddCommentForm = ({taskIDX}) => {
         const modifiedTask = {...appData.tasks[taskIDX], comments: modifiedComments};
         const modifiedTasks = appData.tasks.map((task, index) => {
             return index === taskIDX ? modifiedTask : task;
-        })
+        });
 
         setAppDataState({...appData, tasks: modifiedTasks});
         reset();
