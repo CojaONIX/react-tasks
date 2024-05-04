@@ -4,7 +4,7 @@ import {appDataState} from "../States/appDataState";
 import {useForm} from "react-hook-form";
 
 
-const AddCommentForm = ({taskID}) => {
+const AddCommentForm = ({taskIDX}) => {
 
     const setAppDataState = useSetRecoilState(appDataState);
     const appData = useRecoilValue(appDataState);
@@ -20,10 +20,10 @@ const AddCommentForm = ({taskID}) => {
         data.id = Date.now();
         data.author = appData.auth.name;
 
-        const modifiedComments = [...appData.tasks[taskID].comments, data];
-        const modifiedTask = {...appData.tasks[taskID], comments: modifiedComments};
+        const modifiedComments = [...appData.tasks[taskIDX].comments, data];
+        const modifiedTask = {...appData.tasks[taskIDX], comments: modifiedComments};
         const modifiedTasks = appData.tasks.map((task, index) => {
-            return index === taskID ? modifiedTask : task;
+            return index === taskIDX ? modifiedTask : task;
         })
 
         setAppDataState({...appData, tasks: modifiedTasks});

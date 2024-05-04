@@ -4,6 +4,7 @@ import {Accordion, Button, Form} from "react-bootstrap";
 import {useState} from "react";
 import EditTaskForm from "./EditTaskForm";
 import CommentsList from "./CommentsList";
+import AddCommentForm from "./AddCommentForm";
 
 
 const TasksList = () => {
@@ -59,15 +60,16 @@ const TasksList = () => {
                                 {appData.auth &&
                                     <>
                                         <div className="d-flex justify-content-between">
-                                            <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete
-                                                Task</Button>
+                                            <Button onClick={() => deleteTask(task.id)} variant="outline-danger btn-sm">Delete Task</Button>
                                             {task.owner !== 'App' &&
-                                                <Button onClick={() => setEditTaskID(task.id)}
-                                                        variant="outline-primary btn-sm">Edit Task</Button>
+                                                <Button onClick={() => setEditTaskID(task.id)} variant="outline-primary btn-sm">Edit Task</Button>
                                             }
                                         </div>
                                         <hr/>
-                                        <CommentsList taskID={index} comments={task.comments}/>
+
+                                        <CommentsList comments={task.comments}/>
+                                        <AddCommentForm taskIDX={index}/>
+
                                     </>
                                 }
                             </Accordion.Body>
