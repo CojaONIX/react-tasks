@@ -43,7 +43,7 @@ const AddCommentForm = ({taskIDX}) => {
                 />
             </Form.Group>
 
-            <Button variant="primary" type="submit">Save</Button>
+            <Button variant="primary" type="submit">Send</Button>
         </Form>
     );
 }

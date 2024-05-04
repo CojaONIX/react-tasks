@@ -1,5 +1,5 @@
 
-export const appVersion = 1.4;
+export const appVersion = 2.1;
 
 export const defaultCategories = ['Frontend', 'Backend', 'Design'];
 export const defaultTasks =
@@ -14,18 +14,18 @@ export const defaultTasks =
             comments: [
                 {
                     id: 1714303546000,
-                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, consectetur dolores officiis architecto ipsam omnis voluptate ducimus atque cupiditate tenetur magnam ratione dolorum est temporibus? Incidunt esse asperiores magnam, optio assumenda quis natus vel molestiae eligendi praesentium enim. Dolore quam ab consequatur blanditiis, expedita vel.',
-                    author: 'Test'
+                    text: 'Komentar moze da obrise:\n1. autor komentara\n2. korisnik sa rolom "admin" (admin@admin.com)\n3. svi mogu test komentare (@App)',
+                    author: 'App'
                 },
                 {
                     id: 1714303556000,
                     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto blanditiis, nostrum optio nemo facere nesciunt labore ut tempora repudiandae placeat, dolor perferendis dicta dolores? Eum aspernatur accusantium laboriosam eius perspiciatis nesciunt illum consequuntur!',
-                    author: 'Marija'
+                    author: 'App'
                 },
                 {
                     id: 1714303566000,
                     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, dolorem laudantium vitae quisquam natus quidem qui error ea nihil modi, eos in beatae ratione rem sapiente eius, laboriosam blanditiis hic laborum consequatur? Reprehenderit praesentium porro explicabo animi vitae veritatis nostrum? Quisquam reprehenderit, quia minus enim voluptatem saepe labore. Fugit a, recusandae debitis voluptas dolorem enim expedita quibusdam obcaecati id dolor voluptatum, quia labore, iure natus. Repellat vitae autem nisi soluta eveniet porro atque fugit quae sunt inventore, repellendus voluptate exercitationem dolore rem nemo quisquam nostrum cum assumenda doloribus quas voluptates omnis velit. Laboriosam ducimus accusamus omnis sed? Quam, porro.',
-                    author: 'Aleksandar'
+                    author: 'App'
                 }
             ]
         },

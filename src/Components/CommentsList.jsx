@@ -23,13 +23,16 @@ const CommentsList = ({taskIDX, comments}) => {
         <ListGroup>
             {
                 comments.map(comment =>
-                    <ListGroup.Item  key={comment.id}>
+                    <ListGroup.Item key={comment.id}>
                         <div className="d-flex justify-content-between align-items-start text-success">
                             <p className="small">@{comment.author}</p>
-                            <p className="small">{new Date(comment.id + 2*60*60*1000).toISOString().slice(0, 19).replace('T', ', ')}</p>
-                            <Button onClick={() => deleteComment(comment.id)} variant="outline-secondary py-0 px-1" style={{fontSize:'12px'}}>&#10005;</Button>
+                            <p className="small">{new Date(comment.id + 2 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ', ')}</p>
+                            {(comment.author === 'App' || appData.auth.role === 'admin' || comment.author === appData.auth.name)
+                                ? <Button onClick={() => deleteComment(comment.id)} variant="outline-secondary py-0 px-1" style={{fontSize: '12px'}}>&#10005;</Button>
+                                : <Button variant="outline-secondary py-0 px-1" style={{fontSize: '12px'}}>&#9946;</Button>
+                            }
                         </div>
-                        {comment.text}
+                        {comment.text.split('\n').map((text, index) => <p key={'comm'+index} className="m-0">{text}</p>)}
                     </ListGroup.Item>
                 )
             }
